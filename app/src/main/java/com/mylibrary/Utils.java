@@ -1,5 +1,7 @@
 package com.mylibrary;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,5 +44,10 @@ public final class Utils {
 
     public boolean addToCurrentlyReading(Book book){
         return currentlyReadingBooks.add(book);
+    }
+
+    public boolean removeCurrentlyReadingBook(Book book){
+        Log.d("as","nikhil inside removeCurrentlyReadingBook");
+        return currentlyReadingBooks.remove(book);
     }
 }

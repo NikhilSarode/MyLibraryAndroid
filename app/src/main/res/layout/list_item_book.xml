@@ -87,6 +87,17 @@
 
             </TextView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:layout_below="@id/txtShortDesc"
+                android:layout_toStartOf="@id/upArrow"
+                android:textColor="@color/red"
+                android:id="@+id/btnDelete"
+                >
+
+            </TextView>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

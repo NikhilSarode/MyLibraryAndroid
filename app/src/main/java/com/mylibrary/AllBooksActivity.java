@@ -20,7 +20,7 @@ public class AllBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_books);
 
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
-        adapter=new BookRecViewAdapter(this);
+        adapter=new BookRecViewAdapter(this,"allBooks");
 
         booksRecyclerView.setAdapter(adapter);
         booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
