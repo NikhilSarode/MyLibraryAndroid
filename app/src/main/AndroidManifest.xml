@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLibrary">
         <activity
+            android:name=".WebsiteActivity"
+            android:exported="true" />
+        <activity
             android:name=".CurrentlyReadingActivity"
             android:exported="true" />
         <activity

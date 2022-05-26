@@ -47,7 +47,6 @@ public final class Utils {
     }
 
     public boolean removeCurrentlyReadingBook(Book book){
-        Log.d("as","nikhil inside removeCurrentlyReadingBook");
         return currentlyReadingBooks.remove(book);
     }
 }

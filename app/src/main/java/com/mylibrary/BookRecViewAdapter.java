@@ -81,7 +81,6 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("a","nikhil inside onclick");
                     Book book=books.get(position);
 
                     AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
