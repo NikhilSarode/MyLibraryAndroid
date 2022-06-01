@@ -22,7 +22,8 @@
             android:exported="true" />
         <activity
             android:name=".AllBooksActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/activity_all_books"/><!-- for custom label of an activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
