@@ -3,6 +3,7 @@ package com.mylibrary;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,12 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             public void onClick(View view) {
                 Intent intent=new Intent(mContext,BookActivity.class);
                 intent.putExtra("bookId",books.get(position).getId());
+                //Alternatively such data can be passed in the bundle object
+                //Thus bundle can be used to pass multiple data in same object
+                Bundle bundle=new Bundle();
+                bundle.putInt("bookId",books.get(position).getId());
+                intent.putExtra("bundle",bundle);
+
                 mContext.startActivity(intent);
             }
         });
