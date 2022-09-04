@@ -3,8 +3,11 @@ package com.mylibrary;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -23,6 +26,7 @@ public class BookActivity extends AppCompatActivity {
     private TextView txtBookDetailsName,txtBkDetNameVal,txtBkDtsAuthor,txtBkDtsAuthorVal,txtBkDtsPages,txtBkDtlsPagesVal,txtBkDtlsDesc,txtBkDtlsDescVal;
     private ImageView imgBkDtls;
     private static final int camera_request_code=145;
+    private static final int camera_permission_code=105;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,10 +105,32 @@ public class BookActivity extends AppCompatActivity {
         imgBkDtls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,camera_request_code );
+               // openCamera();
+                handlePermission(); //somehow its not working. need to figure out
             }
         });
+    }
+
+    //To retain the information upon configuration changes
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("bookDescription",txtBkDtlsDescVal.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    private void handlePermission(){
+        System.out.println("nikhil inside handlePermission");
+        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+            System.out.println("nikhil inside if");
+            openCamera();
+        }else{
+            System.out.println("nikhil inside else");
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},camera_permission_code);
+        }
+    }
+    private void openCamera(){
+        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,camera_request_code );
     }
 
     //To capture a photo for book image using camera
@@ -130,11 +156,16 @@ public class BookActivity extends AppCompatActivity {
         }
     }
 
-    //To retain the information upon configuration changes
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putString("bookDescription",txtBkDtlsDescVal.getText().toString());
-        super.onSaveInstanceState(outState);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case camera_permission_code:
+                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    openCamera();
+                }
+                break;
+        }
     }
 
     private void initViews(){
