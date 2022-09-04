@@ -105,8 +105,7 @@ public class BookActivity extends AppCompatActivity {
         imgBkDtls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // openCamera();
-                handlePermission(); //somehow its not working. need to figure out
+                handlePermission();
             }
         });
     }
@@ -119,12 +118,9 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void handlePermission(){
-        System.out.println("nikhil inside handlePermission");
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-            System.out.println("nikhil inside if");
             openCamera();
         }else{
-            System.out.println("nikhil inside else");
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},camera_permission_code);
         }
     }
