@@ -78,6 +78,26 @@
             app:layout_constraintStart_toStartOf="@+id/btnAddToFav"
             app:layout_constraintTop_toBottomOf="@+id/btnAddToFav" />
 
+        <Button
+            android:id="@+id/setAlarm"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Set Alarm"
+            app:layout_constraintEnd_toEndOf="@+id/recommendToFriend"
+            app:layout_constraintStart_toStartOf="@+id/recommendToFriend"
+            app:layout_constraintTop_toBottomOf="@+id/recommendToFriend" />
+
+        <Button
+            android:id="@+id/btnDatePicker"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Date Picker"
+            app:layout_constraintEnd_toEndOf="@+id/setAlarm"
+            app:layout_constraintStart_toStartOf="@+id/setAlarm"
+            app:layout_constraintTop_toBottomOf="@+id/setAlarm" />
+
         <TextView
             android:id="@+id/txtBookDetailsName"
             android:layout_width="wrap_content"

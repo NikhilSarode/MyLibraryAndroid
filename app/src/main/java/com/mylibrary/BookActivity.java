@@ -6,27 +6,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.AlarmClock;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class BookActivity extends AppCompatActivity {
 
-    private Button btnDetailsCurrentlyReading,btnDetailsWantToRead,btnAlreadyRead,btnAddToFav,btnrecommendToFriend;
+    private Button btnDetailsCurrentlyReading,btnDetailsWantToRead,btnAlreadyRead,btnAddToFav,btnrecommendToFriend,btnSetAlarm,btnDatePicker;
     private TextView txtBookDetailsName,txtBkDetNameVal,txtBkDtsAuthor,txtBkDtsAuthorVal,txtBkDtsPages,txtBkDtlsPagesVal,txtBkDtlsDesc,txtBkDtlsDescVal;
     private ImageView imgBkDtls;
     private static final int camera_request_code=145;
     private static final int camera_permission_code=105;
+    private Calendar calendar=Calendar.getInstance();
+
+    //In date picker when you select a date and click OK then below listener gets executed.
+    private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayfMonth) {
+            calendar.set(Calendar.YEAR,year);
+            calendar.set(Calendar.MONTH,month);
+            calendar.set(Calendar.DAY_OF_MONTH,dayfMonth);
+            btnDatePicker.setText(new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +118,40 @@ public class BookActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(BookActivity.this,"Cannot handle the intent",Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        //Set an alarm
+        btnSetAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Handle permissions same as done for camera. Skipped here.
+                Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                intent.putExtra(AlarmClock.EXTRA_HOUR,7);
+                intent.putExtra(AlarmClock.EXTRA_MINUTES,30);
+                intent.putExtra(AlarmClock.EXTRA_MESSAGE, "Alarm to read books");
+
+                ArrayList<Integer> days=new ArrayList<>();
+                days.add(Calendar.SATURDAY);
+                days.add(Calendar.SUNDAY);
+                intent.putExtra(AlarmClock.EXTRA_DAYS,days);
+
+                startActivity(intent);
+            }
+        });
+
+        btnDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Open a datepicker provided by android
+                DatePickerDialog datePickerDialog=new DatePickerDialog(
+                        BookActivity.this,
+                        listener,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)
+                );
+                datePickerDialog.show();
             }
         });
 
@@ -179,5 +233,7 @@ public class BookActivity extends AppCompatActivity {
         txtBkDtlsDescVal=findViewById(R.id.txtBkDtlsDescVal);
         imgBkDtls=findViewById(R.id.imgBkDtls);
         btnrecommendToFriend=findViewById(R.id.recommendToFriend);
+        btnSetAlarm=findViewById(R.id.setAlarm);
+        btnDatePicker=findViewById(R.id.btnDatePicker);
     }
 }
