@@ -3,8 +3,8 @@
     package="com.mylibrary">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLibrary">
+        <activity
+            android:name=".WishListActivity"
+            android:exported="true" />
         <activity
             android:name=".WebsiteActivity"
             android:exported="true" />
@@ -25,7 +28,7 @@
         <activity
             android:name=".AllBooksActivity"
             android:exported="true"
-            android:label="@string/activity_all_books"/><!-- for custom label of an activity -->
+            android:label="@string/activity_all_books" /> <!-- for custom label of an activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

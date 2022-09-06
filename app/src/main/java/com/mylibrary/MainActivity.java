@@ -37,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnYourWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,WishListActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
