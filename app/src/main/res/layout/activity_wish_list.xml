@@ -14,6 +14,14 @@
         android:id="@+id/fragmentFirstWishList"
         ></fragment>
 
+    <TextView
+        android:id="@+id/txtParentWishList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is inside parent activity"
+        android:layout_centerInParent="true"
+        ></TextView>
+
     <!-- 2nd way of using fragments -->
     <FrameLayout
         android:layout_width="match_parent"

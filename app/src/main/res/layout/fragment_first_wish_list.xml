@@ -10,6 +10,24 @@
     android:layout_height="wrap_content"
     android:text="First WishList"
     android:textColor="@color/white"
+    android:id="@+id/txtWishList"
     android:layout_centerInParent="true"></TextView>
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTxtWishList"
+        android:layout_below="@id/txtWishList"
+        android:layout_marginStart="50dp"
+        ></EditText>
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:layout_below="@id/txtWishList"
+        android:id="@+id/btnWishList"
+        android:layout_toRightOf="@id/editTxtWishList"
+        ></Button>
 
 </RelativeLayout>
