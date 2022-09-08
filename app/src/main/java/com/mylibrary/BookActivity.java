@@ -54,21 +54,24 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
 
         Intent intent=getIntent();
+
+        /*Receiveing the data from intent*/
         int bookId=-1;
-        if(intent!=null)bookId=intent.getIntExtra("bookId",-1);
-        //or get it through bundle
+        if(intent!=null)bookId=intent.getIntExtra("bookId",-1);  //1st way
+        //2nd way:- get it through bundle
         if(intent!=null){
             Bundle bundle=intent.getBundleExtra("bundle");
             if(bundle!=null)bookId=bundle.getInt("bookId");
         }
+
+        /*3rd way where we passed directly the java object in the intent*/
+        Book book= intent.getParcelableExtra("book");
 
         //This bundle was coming from Intent. In this method as a argument we see savedInstanceState which is also
         //a bundle. This bundle is used to retain the state of activity upon any configuration changes.
         //Configuration changes can be like rotating the phone, change device language etc.
         //In such events activity onCreate hook is invoked again which causes to loose user performed actions
         //To reatin that use this savedInstanceState
-
-        Book book=Utils.getInstance().getBook(bookId);
 
         initViews();
         txtBkDtsAuthorVal.setText(book.getAuthor());

@@ -58,12 +58,17 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(mContext,BookActivity.class);
+                //1st way of passing data
                 intent.putExtra("bookId",books.get(position).getId());
-                //Alternatively such data can be passed in the bundle object
+                //2nd way of passing data:- such data can be passed in the bundle object
                 //Thus bundle can be used to pass multiple data in same object
                 Bundle bundle=new Bundle();
                 bundle.putInt("bookId",books.get(position).getId());
                 intent.putExtra("bundle",bundle);
+                /*3rd way of passing data. Directly the object. For this to work your java object should
+                    have implemented Parcelable interface
+                */
+                intent.putExtra("book",books.get(position));
 
                 mContext.startActivity(intent);
             }

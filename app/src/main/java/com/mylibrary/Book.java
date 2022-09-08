@@ -1,8 +1,12 @@
 package com.mylibrary;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Objects;
 
-public class Book {
+/*Parcelable:- Need to implement if you want to pass this java object in the intent directly*/
+public class Book implements Parcelable {
     private int id;
     private String name;
     private String author;
@@ -22,6 +26,29 @@ public class Book {
         this.longDesc = longDesc;
         this.isExpanded=false;
     }
+
+    protected Book(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        author = in.readString();
+        pages = in.readInt();
+        imageUrl = in.readString();
+        shortDesc = in.readString();
+        longDesc = in.readString();
+        isExpanded = in.readByte() != 0;
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -98,5 +125,22 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(author);
+        parcel.writeInt(pages);
+        parcel.writeString(imageUrl);
+        parcel.writeString(shortDesc);
+        parcel.writeString(longDesc);
+        parcel.writeByte((byte) (isExpanded ? 1 : 0));
     }
 }
