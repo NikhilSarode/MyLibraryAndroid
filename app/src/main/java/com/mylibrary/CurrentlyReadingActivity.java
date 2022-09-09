@@ -24,6 +24,8 @@ public class CurrentlyReadingActivity extends AppCompatActivity {
         adapter.setBooks(Utils.getInstance().getCurrentlyReadingBooks());
     }
 
+    /*intent.setFlags clears the backstack and closes the app. But say we want to navigate to Main activity
+    so to do that we can override below method*/
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this,MainActivity.class);
