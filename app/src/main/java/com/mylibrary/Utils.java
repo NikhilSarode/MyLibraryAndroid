@@ -9,6 +9,7 @@ public final class Utils {
     private static Utils utils;
     private List<Book> allBooks;
     private List<Book> currentlyReadingBooks;
+    private int idSequence = 21;
 
     private Utils() {
         allBooks=new ArrayList<>();
@@ -48,5 +49,10 @@ public final class Utils {
 
     public boolean removeCurrentlyReadingBook(Book book){
         return currentlyReadingBooks.remove(book);
+    }
+
+    public void addBook(Book book){
+        book.setId(idSequence++);
+        allBooks.add(book);
     }
 }

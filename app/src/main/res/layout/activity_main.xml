@@ -40,11 +40,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/btnAlreadyReadBooks"
+        android:id="@+id/btnCreateNewBook"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Already Read Books"
+        android:text="Create New Book"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/btnCurrentlyReading"
         app:layout_constraintHorizontal_bias="0.491"
@@ -58,9 +58,9 @@
         android:layout_marginTop="20dp"
         android:text="Your Wishlist"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/btnAlreadyReadBooks"
-        app:layout_constraintStart_toStartOf="@+id/btnAlreadyReadBooks"
-        app:layout_constraintTop_toBottomOf="@+id/btnAlreadyReadBooks" />
+        app:layout_constraintEnd_toEndOf="@+id/btnCreateNewBook"
+        app:layout_constraintStart_toStartOf="@+id/btnCreateNewBook"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateNewBook" />
 
     <Button
         android:id="@+id/btnSeeYourFavourites"

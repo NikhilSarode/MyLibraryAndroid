@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddNewBookDialog.OnSaveNewBookDialogInterface {
 
-    private Button btnAllBooks,btnCurrentlyReading,btnAlreadyReadBooks,btnYourWishList,btnSeeYourFavourites,btnAbout;
+    private Button btnAllBooks,btnCurrentlyReading,btnCreateNewBook,btnYourWishList,btnSeeYourFavourites,btnAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +67,27 @@ public class MainActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        btnCreateNewBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddNewBookDialog newBkDialog=new AddNewBookDialog();
+                //newBkDialog.setArguments(bundle);//if you want to pass data to the dialog
+                newBkDialog.show(getSupportFragmentManager(),"createNewBkDialog");
+            }
+        });
+    }
+    @Override
+    public void onSaveNewBook(Book book) {
+        Utils.getInstance().addBook(book);
+        Intent intent = new Intent(MainActivity.this,AllBooksActivity.class);
+        startActivity(intent);
     }
 
     private void initViews(){
         btnAllBooks=findViewById(R.id.btnAllBooks);
         btnCurrentlyReading=findViewById(R.id.btnCurrentlyReading);
-        btnAlreadyReadBooks=findViewById(R.id.btnAlreadyReadBooks);
+        btnCreateNewBook=findViewById(R.id.btnCreateNewBook);
         btnYourWishList=findViewById(R.id.btnYourWishList);
         btnSeeYourFavourites=findViewById(R.id.btnSeeYourFavourites);
         btnAbout=findViewById(R.id.btnAbout);

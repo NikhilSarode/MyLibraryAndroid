@@ -27,6 +27,9 @@ public class Book implements Parcelable {
         this.isExpanded=false;
     }
 
+    public Book() {
+    }
+
     protected Book(Parcel in) {
         id = in.readInt();
         name = in.readString();
