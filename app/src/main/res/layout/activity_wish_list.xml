@@ -18,9 +18,10 @@
         android:id="@+id/txtParentWishList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is inside parent activity"
-        android:layout_centerInParent="true"
-        ></TextView>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/fragmentFirstWishList"
+        android:layout_margin="50dp"
+        android:text="This is inside parent activity"></TextView>
 
     <!-- 2nd way of using fragments -->
     <FrameLayout
@@ -29,5 +30,16 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/container">
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/asyncCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtParentWishList"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Async Counter"
+        android:textColor="#2196F3"
+        android:textSize="30sp" />
 
 </RelativeLayout>

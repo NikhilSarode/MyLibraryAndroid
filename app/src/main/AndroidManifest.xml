@@ -39,6 +39,16 @@
             </intent-filter>
         </activity>
 
+        <!-- exported:- whether this service can be used by other applications-->
+        <service android:name=".CounterService"
+            android:exported="false"
+            android:description="@string/counter_service_description"
+            />
+        <service android:name=".CounterServiceParallel"
+            android:exported="false"
+            android:description="@string/counter_service_description"
+            />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

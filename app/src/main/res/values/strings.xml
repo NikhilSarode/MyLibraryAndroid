@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MyLibrary</string>
     <string name="activity_all_books">All Books</string>
+    <string name="counter_service_description">Its a service for maintaining counter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
