@@ -2,6 +2,14 @@ package com.mylibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -16,6 +24,8 @@ import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.os.SystemClock;
 import android.widget.TextView;
+
+import java.util.concurrent.TimeUnit;
 
 public class WishListActivity extends AppCompatActivity implements SendNameInterface{
 
@@ -93,6 +103,9 @@ public class WishListActivity extends AppCompatActivity implements SendNameInter
 
         //JOB Scheduler
         initJobScheduler();
+
+        //Work Manager
+        initWorker();
     }
 
     @Override
@@ -177,5 +190,41 @@ public class WishListActivity extends AppCompatActivity implements SendNameInter
             scheduler.schedule(builder.build());
 
         }
+    }
+
+    private void initWorker(){
+        Data data=new Data.Builder()
+                .putInt("number",34)
+                .build();
+
+        //Various conditions can be put here
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build();
+        //One time request means valid only for one time execution of te job
+        OneTimeWorkRequest downloadRequest = new OneTimeWorkRequest.Builder(CounterWorker.class)
+                .setInputData(data)
+                .setConstraints(constraints)
+                .build();
+        WorkManager.getInstance(this).enqueue(downloadRequest);
+
+        //Executes the job at specified interval of time
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
+                CounterWorker.class,
+                1,
+                TimeUnit.DAYS
+        ).setInputData(data)
+                .setConstraints(constraints)
+                .build();
+        //WorkManager.getInstance(this).enqueue(periodicWorkRequest);
+
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(downloadRequest.getId()).observe(this,
+                new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        System.out.println("nikhil Work Manager STATUS="+workInfo.getState());
+                    }
+                });
+        //WorkManager.getInstance(this).cancelWorkById(downloadRequest.getId());
     }
 }

@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
+/*
+* Limitation:- Not backward compatible. Available only for API21.
+* For lower versions use Work Manager.
+* Note that JobScheduler does not create Worker thread by itself. You will have to do it using AsyncTask.
+* */
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class CounterJobScheduler extends JobService {
     private MyAsyncTask myAsyncTask;
