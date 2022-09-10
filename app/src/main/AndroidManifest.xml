@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLibrary">
         <activity
+            android:name=".FavouritesActivity"
+            android:exported="true" />
+        <activity
             android:name=".WishListActivity"
             android:exported="true" />
         <activity
@@ -38,24 +41,22 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- exported:- whether this service can be used by other applications-->
-        <service android:name=".CounterService"
-            android:exported="false"
+        </activity> <!-- exported:- whether this service can be used by other applications -->
+        <service
+            android:name=".CounterService"
             android:description="@string/counter_service_description"
-            />
-        <service android:name=".CounterServiceParallel"
-            android:exported="false"
+            android:exported="false" />
+        <service
+            android:name=".CounterServiceParallel"
             android:description="@string/counter_service_description"
-            />
-        <service android:name=".CounterServiceBound"
-            android:exported="false"
+            android:exported="false" />
+        <service
+            android:name=".CounterServiceBound"
             android:description="@string/counter_service_description"
-            />
-        <service android:name=".CounterJobScheduler"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            />
+            android:exported="false" />
+        <service
+            android:name=".CounterJobScheduler"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <meta-data
             android:name="preloaded_fonts"

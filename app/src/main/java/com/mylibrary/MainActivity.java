@@ -76,6 +76,14 @@ public class MainActivity extends AppCompatActivity implements AddNewBookDialog.
                 newBkDialog.show(getSupportFragmentManager(),"createNewBkDialog");
             }
         });
+
+        btnSeeYourFavourites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,FavouritesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public void onSaveNewBook(Book book) {
