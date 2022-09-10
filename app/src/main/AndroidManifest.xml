@@ -48,6 +48,10 @@
             android:exported="false"
             android:description="@string/counter_service_description"
             />
+        <service android:name=".CounterServiceBound"
+            android:exported="false"
+            android:description="@string/counter_service_description"
+            />
 
         <meta-data
             android:name="preloaded_fonts"

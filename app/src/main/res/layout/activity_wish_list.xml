@@ -37,8 +37,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtParentWishList"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Async Counter"
+        android:textColor="#2196F3"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/asyncCounterBounded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/asyncCounter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Async Counter Bounded"
         android:textColor="#2196F3"
         android:textSize="30sp" />
 
