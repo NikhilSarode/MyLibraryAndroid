@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- for rescheduling job scheduler on reboot -->
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
@@ -51,6 +52,9 @@
         <service android:name=".CounterServiceBound"
             android:exported="false"
             android:description="@string/counter_service_description"
+            />
+        <service android:name=".CounterJobScheduler"
+            android:permission="android.permission.BIND_JOB_SERVICE"
             />
 
         <meta-data

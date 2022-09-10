@@ -3,13 +3,17 @@ package com.mylibrary;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PersistableBundle;
 import android.os.SystemClock;
 import android.widget.TextView;
 
@@ -87,6 +91,8 @@ public class WishListActivity extends AppCompatActivity implements SendNameInter
         startService(intent1);
         startService(intent1);
 
+        //JOB Scheduler
+        initJobScheduler();
     }
 
     @Override
@@ -149,6 +155,27 @@ public class WishListActivity extends AppCompatActivity implements SendNameInter
             super.onPostExecute(s);
             asyncCounter.setText(s);
             asyncCounterBounded.setText(s);
+        }
+    }
+
+    private void initJobScheduler(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            ComponentName componentName = new ComponentName(this, CounterJobScheduler.class);
+            PersistableBundle bundle = new PersistableBundle();
+            bundle.putInt("number",20);
+            JobInfo.Builder builder=new JobInfo.Builder(138,componentName)
+                    .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                    .setExtras(bundle)
+                    .setPersisted(true); // Job will be persisted after device reboot. Needs a permission in manifest.
+
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                builder.setPeriodic(15*60*1000,30*60*1000);
+            }else{
+                builder.setPeriodic(15*60*1000);
+            }
+            JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+            scheduler.schedule(builder.build());
+
         }
     }
 }
