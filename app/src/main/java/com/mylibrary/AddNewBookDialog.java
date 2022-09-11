@@ -20,6 +20,10 @@ public class AddNewBookDialog extends DialogFragment {
         void onSaveNewBook(Book book);
     }
 
+    public AddNewBookDialog(OnSaveNewBookDialogInterface onSaveNewBookDialogInterface) {
+        this.onSaveNewBookDialogInterface=onSaveNewBookDialogInterface;
+    }
+
     private OnSaveNewBookDialogInterface onSaveNewBookDialogInterface;
 
     @NonNull
@@ -35,9 +39,10 @@ public class AddNewBookDialog extends DialogFragment {
                 .setTitle("Create a new book");
 
         try {
-            onSaveNewBookDialogInterface=(OnSaveNewBookDialogInterface) getActivity();
+            onSaveNewBookDialogInterface=(OnSaveNewBookDialogInterface) getActivity(); //right now i am receiving the instance from the constructor
+            //since its being called from fragment. Need to find better approach to get calling fragment.
         }catch (ClassCastException ex){
-
+            System.out.println("nikhilexception="+ex.getMessage());
         }
 
         btnSave.setOnClickListener(new View.OnClickListener() {

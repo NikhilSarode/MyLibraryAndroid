@@ -23,7 +23,7 @@ public class AllBooksActivity extends AppCompatActivity {
 
        // overridePendingTransition(R.anim.slide_in,R.anim.slide_out);  //animation
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //to enable back button in action bar
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //to enable back button in action bar
 
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
         adapter=new BookRecViewAdapter(this,"allBooks");

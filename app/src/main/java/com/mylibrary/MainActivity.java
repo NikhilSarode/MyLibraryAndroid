@@ -1,18 +1,28 @@
 package com.mylibrary;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AddNewBookDialog.OnSaveNewBookDialogInterface {
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
-    private Button btnAllBooks,btnCurrentlyReading,btnCreateNewBook,btnYourWishList,btnSeeYourFavourites,btnAbout;
+public class MainActivity extends AppCompatActivity {
+
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,83 +31,37 @@ public class MainActivity extends AppCompatActivity implements AddNewBookDialog.
 
         initViews();
 
-        btnAllBooks.setOnClickListener(new View.OnClickListener() {
+        //Action Bar
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
+                R.string.drawer_open,R.string.drawer_close);
+        toggle.syncState();
+
+        //click listeners for side drawer menu
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,AllBooksActivity.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.cart:
+                        Toast.makeText(MainActivity.this,"cart selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.abtUs:
+                        Toast.makeText(MainActivity.this,"about us selected",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return false;
             }
         });
 
-        btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,CurrentlyReadingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnYourWishList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,WishListActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Please visit our website");
-                builder.setPositiveButton("Visit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent=new Intent(MainActivity.this,WebsiteActivity.class);
-                        intent.putExtra("url","www.google.com");
-                        startActivity(intent);
-                    }
-                });
-                builder.setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.show();
-            }
-        });
-
-        btnCreateNewBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddNewBookDialog newBkDialog=new AddNewBookDialog();
-                //newBkDialog.setArguments(bundle);//if you want to pass data to the dialog
-                newBkDialog.show(getSupportFragmentManager(),"createNewBkDialog");
-            }
-        });
-
-        btnSeeYourFavourites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,FavouritesActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-    @Override
-    public void onSaveNewBook(Book book) {
-        Utils.getInstance().addBook(book);
-        Intent intent = new Intent(MainActivity.this,AllBooksActivity.class);
-        startActivity(intent);
+        //Framelayout replaced with Main Fragment. Fragment is needed because we used DrawerLayout in main activity.
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFragmentContainer, new MainFragment());
+        fragmentTransaction.commit();
     }
 
     private void initViews(){
-        btnAllBooks=findViewById(R.id.btnAllBooks);
-        btnCurrentlyReading=findViewById(R.id.btnCurrentlyReading);
-        btnCreateNewBook=findViewById(R.id.btnCreateNewBook);
-        btnYourWishList=findViewById(R.id.btnYourWishList);
-        btnSeeYourFavourites=findViewById(R.id.btnSeeYourFavourites);
-        btnAbout=findViewById(R.id.btnAbout);
+        drawer=findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.sideNavigationView);
+        toolbar = findViewById(R.id.toolbar);
     }
 }

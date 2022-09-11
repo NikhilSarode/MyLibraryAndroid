@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainFragment">
+
+<ImageView
+    android:id="@+id/appName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:src="@mipmap/ic_launcher"/>
+
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:fontFamily="@font/lemon"
+    android:text="My Lirary"
+    android:textSize="20sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/appName" />
+
+<Button
+    android:id="@+id/btnAllBooks"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="All Books"
+    android:textAllCaps="false"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<Button
+    android:id="@+id/btnCreateNewBook"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Create New Book"
+    android:textAllCaps="false"
+    app:layout_constraintEnd_toEndOf="@+id/btnCurrentlyReading"
+    app:layout_constraintHorizontal_bias="0.491"
+    app:layout_constraintStart_toStartOf="@+id/btnCurrentlyReading"
+    app:layout_constraintTop_toBottomOf="@+id/btnCurrentlyReading" />
+
+<Button
+    android:id="@+id/btnYourWishList"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Your Wishlist"
+    android:textAllCaps="false"
+    app:layout_constraintEnd_toEndOf="@+id/btnCreateNewBook"
+    app:layout_constraintStart_toStartOf="@+id/btnCreateNewBook"
+    app:layout_constraintTop_toBottomOf="@+id/btnCreateNewBook" />
+
+<Button
+    android:id="@+id/btnSeeYourFavourites"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="See Your Favourites"
+    android:textAllCaps="false"
+    app:layout_constraintEnd_toEndOf="@+id/btnYourWishList"
+    app:layout_constraintStart_toStartOf="@+id/btnYourWishList"
+    app:layout_constraintTop_toBottomOf="@+id/btnYourWishList" />
+
+<Button
+    android:id="@+id/btnAbout"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="About"
+    app:layout_constraintEnd_toEndOf="@+id/btnSeeYourFavourites"
+    app:layout_constraintStart_toStartOf="@+id/btnSeeYourFavourites"
+    app:layout_constraintTop_toBottomOf="@+id/btnSeeYourFavourites" />
+
+<Button
+    android:id="@+id/btnCurrentlyReading"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Currently Reading Books"
+    android:textAllCaps="false"
+    app:layout_constraintEnd_toEndOf="@+id/btnAllBooks"
+    app:layout_constraintStart_toStartOf="@+id/btnAllBooks"
+    app:layout_constraintTop_toBottomOf="@+id/btnAllBooks" />
+
+<TextView
+    android:id="@+id/txtBottomLine"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:text="Developed by Nikhil Sarode"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
