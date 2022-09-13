@@ -13,9 +13,10 @@
         <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/activity_wish_list.xml" value="0.2015625" />
         <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/add_new_book_dialog.xml" value="0.25" />
         <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/fragment_first_wish_list.xml" value="0.2015625" />
-        <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/fragment_main.xml" value="0.2015625" />
+        <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/fragment_main.xml" value="0.22" />
         <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/list_item_book.xml" value="0.25" />
         <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/layout/navigation_drawer_header.xml" value="0.2015625" />
+        <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2015625" />
         <entry key="..\:/AndroidWorkspace/MyLibrary/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.25" />
       </map>
     </option>

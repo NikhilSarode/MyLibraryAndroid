@@ -4,19 +4,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainFragment extends Fragment implements AddNewBookDialog.OnSaveNewBookDialogInterface {
 
     private Button btnAllBooks,btnCurrentlyReading,btnCreateNewBook,btnYourWishList,btnSeeYourFavourites,btnAbout;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,6 +30,7 @@ public class MainFragment extends Fragment implements AddNewBookDialog.OnSaveNew
         View view=inflater.inflate(R.layout.fragment_main, container, false);
 
         initViews(view);
+        initBottomNavMenu();
 
         btnAllBooks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +112,27 @@ public class MainFragment extends Fragment implements AddNewBookDialog.OnSaveNew
         btnYourWishList=view.findViewById(R.id.btnYourWishList);
         btnSeeYourFavourites=view.findViewById(R.id.btnSeeYourFavourites);
         btnAbout=view.findViewById(R.id.btnAbout);
+        bottomNavigationView=view.findViewById(R.id.bottomNavView);
+    }
+
+    private void initBottomNavMenu(){
+        bottomNavigationView.setSelectedItemId(R.id.bottomHome); //for default selection in bottom nav
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.bottomHome:
+                        Toast.makeText(getActivity(),"Home selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.bottomSearch:
+                        Toast.makeText(getActivity(),"Search selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.bottomCart:
+                        Toast.makeText(getActivity(),"Cart selected",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return false;
+            }
+        });
     }
 }
